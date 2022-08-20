@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 
 const Navbar = () => {
+  const [nav, setNav] = useState(false);
+  const navHandler = () => {
+    setNav(!nav);
+  };
   return (
     <>
-      <div className=" fixed w-full h-20 shadow-lg z-[100]">
+      <div className=" fixed w-full h-[80px] shadow-lg z-10">
         <div className="flex items-center justify-between w-full h-full px-2 2xl:px-16">
-          <Image width="130" height="150" src="/assets/logo.png" alt="logo" />
+          <Image width="100" height="60" src="/assets/logo.png" alt="logo" />
           <div className="">
             <ul className="hidden md:flex justify-around items-center">
               <Link href="/">
@@ -30,13 +36,23 @@ const Navbar = () => {
                 <li className="ml-10 text-sm hover:border-b">CONTACT</li>
               </Link>
             </ul>
-            <div className="md:hidden">
+            <div onClick={navHandler} className="md:hidden">
               <AiOutlineMenu size={25} />
             </div>
           </div>
         </div>
-        <div className=" fixed top-0 left-0 w-full h-screen bg-black/70">
-          <div className="fixed top-0 left-0 w-[75%] sm:w-[60%] md:w-[45%] h-screen bg-[#ecf0f3] p-5 ease-in duration-500">
+        <div
+          className={
+            nav ? "fixed top-0 left-0 w-full h-screen bg-black/70" : ""
+          }
+        >
+          <div
+            className={
+              nav
+                ? "fixed top-0 left-0 w-[75%] sm:w-[60%] md:w-[45%] h-screen bg-[#ecf0f3] p-5 ease-in duration-500"
+                : "fixed top-0 left-[-110%]  bg-[#ecf0f3] h-screen p-5 ease-in duration-500"
+            }
+          >
             <div className="flex items-center justify-between w-full">
               <div>
                 <Image
@@ -46,7 +62,10 @@ const Navbar = () => {
                   height="80"
                 />
               </div>
-              <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer">
+              <div
+                onClick={navHandler}
+                className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer"
+              >
                 <AiOutlineClose />
               </div>
             </div>
@@ -55,8 +74,10 @@ const Navbar = () => {
                 Let's build something legendary together
               </p>
             </div>
-            <div className="py-4 flex flex-col
-            ">
+            <div
+              className="py-4 flex flex-col
+            "
+            >
               <ul className="">
                 <Link href="/">
                   <li className="py-4 text-sm">HOME</li>
@@ -77,6 +98,33 @@ const Navbar = () => {
                   <li className="py-4 text-sm">CONTACT</li>
                 </Link>
               </ul>
+              <div className="pt-40">
+                <p className="tracking-widest text-primary-600">
+                  Let's Connect
+                </p>
+                <ul className="flex justify-between items-center w-full my-4 sm:w-[80%]">
+                  <Link href="/">
+                    <li className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
+                      <FaLinkedinIn />
+                    </li>
+                  </Link>
+                  <Link href="/">
+                    <li className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
+                      <FaGithub />
+                    </li>
+                  </Link>
+                  <Link href="/">
+                    <li className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
+                      <AiOutlineMail />
+                    </li>
+                  </Link>
+                  <Link href="/">
+                    <li className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
+                      <BsFillPersonPlusFill />
+                    </li>
+                  </Link>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
